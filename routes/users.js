@@ -13,6 +13,8 @@ router.post('/register', (req, res, next) => {
         name: req.body.name,
         regional : req.body.regional,
         contact: req.body.contact,
+        usia_pemain: req.body.usia_pemain,
+        team_agent: req.body.team_agent,
         email:  req.body.email,
         username: req.body.username,
         password: req.body.password
