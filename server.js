@@ -25,6 +25,7 @@ const app = express();
 // Routing
 const users = require('./routes/users');
 const sparingBoard = require('./routes/sparing-boards');
+const dashboard = require('./routes/sparing-offers');
 
 // MW untuk CORS
 app.use(cors());
@@ -44,6 +45,7 @@ require('./config/passport')(passport);
 
 app.use('/users', users);
 app.use('/sparing-board', sparingBoard);
+app.use('/dashboard/', dashboard);
 
 app.get('/', (req, res, next) => {
     res.send('Invalid  End Point');

@@ -71,5 +71,16 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
     res.json({user: req.user});
 });
 
+// Tampilkan Semua team
+router.get('/teams', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    User.getAllTeams(req.user._id, (err, teams) => {
+        if(err){
+            res.json({success: false, err: err})
+        }else {
+            res.json({success: true, teams: teams});
+        }
+    })
+})
+
 
 module.exports = router;
