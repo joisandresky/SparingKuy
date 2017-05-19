@@ -71,7 +71,7 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
     res.json({user: req.user});
 });
 
-// Tampilkan Semua team
+// Tampilkan Semua team untuk pencarian lawan
 router.get('/teams', passport.authenticate('jwt', {session: false}), (req, res, next) => {
     User.getAllTeams(req.user._id, (err, teams) => {
         if(err){

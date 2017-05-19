@@ -39,6 +39,7 @@ const UserSchema = mongoose.Schema({
 
 const User = module.exports = mongoose.model('User', UserSchema);
 
+// Pencarian Lawan -> menampilkan seluruh team kecuali team yang sedang login
 module.exports.getAllTeams = function(id, callback){
     User.find({_id: {$nin: id} }, callback);
 }
