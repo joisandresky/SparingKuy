@@ -38,5 +38,5 @@ module.exports.addNewMatch = function(match, callback){
 }
 
 module.exports.deleteMatch = function(id, callback){
-    sparingBoard.findByIdAndRemove(id, callback);
+    sparingBoard.findByIdAndRemove({_id: id}, callback);
 }

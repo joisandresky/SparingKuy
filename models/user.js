@@ -44,6 +44,10 @@ module.exports.getAllTeams = function(id, callback){
     User.find({_id: {$nin: id} }, callback);
 }
 
+module.exports.getAllTeamsByRegional = function(id,regional, callback){
+    User.find({_id: {$nin: id}, regional: regional }, callback);
+}
+
 module.exports.getUserById = function(id, callback) {
     User.findById(id, callback);
 }

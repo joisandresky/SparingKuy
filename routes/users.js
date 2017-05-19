@@ -81,6 +81,16 @@ router.get('/teams', passport.authenticate('jwt', {session: false}), (req, res, 
         }
     })
 })
+// Tampilkan team berdasarkan Regional
+router.get('/:regional/teams', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    User.getAllTeamsByRegional(req.user._id, req.params.regional, (err, teams) => {
+        if(err){
+            res.json({success: false, msg:'Belum ada Team di Regional ini'});
+        } else {
+            res.json({success: true, teams: teams});
+        }
+    })
+})
 
 
 module.exports = router;
