@@ -15,6 +15,14 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    usia_pemain: {
+        type: String,
+        required: true
+    },
+    team_agent: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true
@@ -30,6 +38,15 @@ const UserSchema = mongoose.Schema({
 });
 
 const User = module.exports = mongoose.model('User', UserSchema);
+
+// Pencarian Lawan -> menampilkan seluruh team kecuali team yang sedang login
+module.exports.getAllTeams = function(id, callback){
+    User.find({_id: {$nin: id} }, callback);
+}
+
+module.exports.getAllTeamsByRegional = function(id,regional, callback){
+    User.find({_id: {$nin: id}, regional: regional }, callback);
+}
 
 module.exports.getUserById = function(id, callback) {
     User.findById(id, callback);

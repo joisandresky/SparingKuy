@@ -13,6 +13,8 @@ router.post('/register', (req, res, next) => {
         name: req.body.name,
         regional : req.body.regional,
         contact: req.body.contact,
+        usia_pemain: req.body.usia_pemain,
+        team_agent: req.body.team_agent,
         email:  req.body.email,
         username: req.body.username,
         password: req.body.password
@@ -68,6 +70,27 @@ router.post('/authenticate', (req, res, next) => {
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
     res.json({user: req.user});
 });
+
+// Tampilkan Semua team untuk pencarian lawan
+router.get('/teams', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    User.getAllTeams(req.user._id, (err, teams) => {
+        if(err){
+            res.json({success: false, err: err})
+        }else {
+            res.json({success: true, teams: teams});
+        }
+    })
+})
+// Tampilkan team berdasarkan Regional
+router.get('/:regional/teams', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    User.getAllTeamsByRegional(req.user._id, req.params.regional, (err, teams) => {
+        if(err){
+            res.json({success: false, msg:'Belum ada Team di Regional ini'});
+        } else {
+            res.json({success: true, teams: teams});
+        }
+    })
+})
 
 
 module.exports = router;
