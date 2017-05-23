@@ -22,7 +22,8 @@ router.post('/penawaran-sparing', passport.authenticate('jwt', {session: false})
         id_home_team: req.user._id,
         away_team: req.body.away_team,
         id_away_team: req.body.id_away_team,
-        regional: req.body.regional
+        home_regional: req.user.regional,
+        away_regional: req.body.away_regional
     });
 
     Sparing.addPenawaranSparing(Offer, (err, offer) => {
@@ -48,11 +49,11 @@ router.delete('/penawaran-sparing/:id', passport.authenticate('jwt', {session: f
 
 // Route untuk Tawaran(user yang di ajak untuk sparing)
 router.get('/tawaran-sparing', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-    Sparing.getAllTawaran(req.user._id, (err, Offers) => {
+    Sparing.getAllTawaran(req.user._id, (err, bids) => {
         if(err){
             res.json({success: false, msg:'Gagal melihat Tawaran Sparing'});
         } else {
-            res.json({success: true, Offers: Offers});
+            res.json({success: true, bids: bids});
         }
     })
 })

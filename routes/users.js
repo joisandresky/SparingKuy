@@ -56,6 +56,9 @@ router.post('/authenticate', (req, res, next) => {
                         name: user.name,
                         username: user.username,
                         email: user.email,
+                        contact: user.contact,
+                        usia_pemain: user.usia_pemain,
+                        team_agent: user.team_agent,
                         regional: user.regional
                     }
                 });
@@ -71,6 +74,26 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
     res.json({user: req.user});
 });
 
+// Update Profile
+router.put('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    let newData = {
+        name: req.body.name,
+        email: req.body.email,
+        contact: req.body.contact,
+        usia_pemain: req.body.usia_pemain,
+        team_agent: req.body.team_agent,
+        regional: req.body.regional
+    }
+
+    User.updateUser(req.user._id, newData, (err, resullt) => {
+        if(err){
+            res.json({success: false, msg:'Gagal Mengubah Profile', err: err});
+        } else {
+            res.json({success: true, msg:'Profile anda Telah di Update!'});
+        }
+    })
+})
+
 // Tampilkan Semua team untuk pencarian lawan
 router.get('/teams', passport.authenticate('jwt', {session: false}), (req, res, next) => {
     User.getAllTeams(req.user._id, (err, teams) => {
@@ -81,7 +104,7 @@ router.get('/teams', passport.authenticate('jwt', {session: false}), (req, res, 
         }
     })
 })
-// Tampilkan team berdasarkan Regional
+// Tampilkan team berdasarkan Regional (tidak dipakai, dihandle oleh Front-End)
 router.get('/:regional/teams', passport.authenticate('jwt', {session: false}), (req, res, next) => {
     User.getAllTeamsByRegional(req.user._id, req.params.regional, (err, teams) => {
         if(err){

@@ -82,7 +82,18 @@ router.get('/penawaran-jadwal', passport.authenticate('jwt', {session: false}), 
     })
 })
 
-// Merespon Jadwal sparring
+// Merespon Jadwal sparring (belum)
+router.put('/penawaran-jadwal/response/:id', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    let respon = req.body.respon;
+    Scheduling.responJadwal(req.params.id, respon, (err, result) => {
+        if(err){
+            res.json({success: false, msg:'Gagal Merespon Jadwal!'});
+        } else {
+            res.json({success: true, msg:'Berhasil Merespon Jadwal!'});
+        }
+    })
+})
+
 
 // Mereschedule Tawaran Jadwal Sparing
 router.put('/penawaran-jadwal/:id', passport.authenticate('jwt', {session: false}), (req, res, next) => {
