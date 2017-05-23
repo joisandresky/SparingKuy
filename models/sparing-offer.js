@@ -20,7 +20,10 @@ const SparingSchema = mongoose.Schema({
         required: true,
         default: 'Diajukan'
     },
-    regional: {
+    home_regional: {
+        type: String
+    },
+    away_regional: {
         type: String
     }
 });
@@ -39,7 +42,7 @@ module.exports.addPenawaranSparing = function(penawaran, callback){
 
 module.exports.deletePenawaran = function(id, callback){
     const query = { _id: id };
-    Sparing.findOne(query, callback);
+    Sparing.findByIdAndRemove(query, callback);
 }
 
 

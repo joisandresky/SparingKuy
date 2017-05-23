@@ -25,14 +25,16 @@ router.get('/:id', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
     let lokasi = {
-        nama_tempat: req.body.nama_tempat,
-        alamat: req.body.alamat_tempat,
+
     }
     let newMatch = new sparingBoards({
         home_team: req.body.home_team,
         away_team: req.body.away_team,
         waktu_pertandingan: req.body.waktu_pertandingan,
-        lokasi_pertandingan: lokasi,
+        lokasi_pertandingan: {
+            nama_tempat: req.body.lokasi_pertandingan.nama_tempat,
+            alamat: req.body.lokasi_pertandingan.alamat_tempat
+        },
         regional: req.body.regional
     });
 

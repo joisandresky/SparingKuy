@@ -44,7 +44,8 @@ module.exports.getAllTeams = function(id, callback){
     User.find({_id: {$nin: id} }, callback);
 }
 
-module.exports.getAllTeamsByRegional = function(id,regional, callback){
+// Tidak Dipakai karna di Handle oleh Front-end
+module.exports.getAllTeamsByRegional = function(id, regional, callback){
     User.find({_id: {$nin: id}, regional: regional }, callback);
 }
 
@@ -64,6 +65,20 @@ module.exports.addUser = function(newUser, callback) {
             newUser.password = hash;
             newUser.save(callback);
         })
+    })
+}
+
+module.exports.updateUser = function(id, newDataUser, callback){
+    const query = { _id: id };
+    User.findById(query, (err, currentUser) => {
+        if(err) throw err;
+        currentUser.name = newDataUser.name;
+        currentUser.email = newDataUser.email;
+        currentUser.usia_pemain = newDataUser.usia_pemain;
+        currentUser.team_agent = newDataUser.team_agent;
+        currentUser.contact = newDataUser.contact;
+        currentUser.regional = newDataUser.regional;
+        currentUser.save(callback);
     })
 }
 

@@ -5,6 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const config = require('./config/db');
+const regional = require('./Regional.json');
 
 // Koneksi ke Database
 mongoose.connect(config.database);
@@ -48,6 +49,10 @@ app.use('/users', users);
 app.use('/sparing-board', sparingBoard);
 app.use('/dashboard/', dashboard);
 app.use('/schedule', schedule)
+
+app.get('/regional', (req, res, next) => {
+    res.json(regional);
+})
 
 app.get('/', (req, res, next) => {
     res.send('Invalid  End Point');

@@ -1,0 +1,41 @@
+{
+    "Regional":
+    [
+        {
+            "Region": "Bekasi",
+            "SubRegional": ["Cikarang", "Galaxy"]
+        },
+        {
+            "Region": "Jakarta Barat",
+            "SubRegional": ["Kebayoran", "Kebon Jeruk"]
+        },
+        {
+            "Region": "Jakarta Utara",
+            "SubRegional": ["Kebayoran", "Kebon Jeruk"]
+        },
+        {
+            "Region": "Jakarta Timur",
+            "SubRegional": ["Kebayoran", "Kebon Jeruk"]
+        },
+        {
+            "Region": "Jakarta Pusat",
+            "SubRegional": ["Kebayoran", "Kebon Jeruk"]
+        },
+        {
+            "Region": "Jakarta Selatan",
+            "SubRegional": ["Kebayoran", "Kebon Jeruk"]
+        },
+        {
+            "Region": "Bogor",
+            "SubRegional": ["Kebayoran", "Kebon Jeruk"]
+        },
+        {
+            "Region": "Depok",
+            "SubRegional": ["Kebayoran", "Kebon Jeruk"]
+        },
+        {
+            "Region": "Tangerang",
+            "SubRegional": ["Kebayoran", "Kebon Jeruk"]
+        }
+    ]
+}
