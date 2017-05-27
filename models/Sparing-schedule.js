@@ -51,7 +51,7 @@ module.exports.deleteJadwalSparring = function(id, callback){
 // Untuk Away Team
 // Menampilkan Jadwal Sparring(away_team)
 module.exports.getJadwalMyTeam = function(id_away_team, callback){
-    SparSchedule.find({di_away_team: id_away_team}, callback);
+    SparSchedule.find({id_away_team: id_away_team}, callback);
 }
 
 // Merespon Tawaran Jadwal

@@ -24,7 +24,7 @@ router.post('/new-sparring-schedule', passport.authenticate('jwt', {session: fal
         id_home_team: req.user._id,
         away_team: req.body.away_team,
         id_away_team: req.body.id_away_team,
-        waktu_pertandingan: req.body.waktu_pertandingan,
+        waktu_pertandingan: new Date(req.body.waktu_pertandingan),
         lokasi_pertandingan: {
             nama_tempat: req.body.lokasi_pertandingan.nama_tempat,
             alamat: req.body.lokasi_pertandingan.alamat
@@ -77,12 +77,12 @@ router.get('/penawaran-jadwal', passport.authenticate('jwt', {session: false}), 
         if(err){
             res.json({success:false, msg:'Gagal Memuat Tawaran jadwal', err: err});
         } else {
-            res.json({success:true, schedules: jadwal});
+            res.json({success:true, schedules: Jadwal});
         }
     })
 })
 
-// Merespon Jadwal sparring (belum)
+// Merespon Jadwal sparring
 router.put('/penawaran-jadwal/response/:id', passport.authenticate('jwt', {session: false}), (req, res, next) => {
     let respon = req.body.respon;
     Scheduling.responJadwal(req.params.id, respon, (err, result) => {

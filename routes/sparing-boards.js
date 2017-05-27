@@ -24,9 +24,6 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    let lokasi = {
-
-    }
     let newMatch = new sparingBoards({
         home_team: req.body.home_team,
         away_team: req.body.away_team,
