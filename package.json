@@ -15,7 +15,9 @@
     "express": "^4.15.3",
     "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.9.10",
+    "nodemailer": "^4.0.1",
     "passport": "^0.3.2",
-    "passport-jwt": "^2.2.1"
+    "passport-jwt": "^2.2.1",
+    "xoauth2": "^1.2.0"
   }
 }

@@ -23,7 +23,8 @@ router.post('/penawaran-sparing', passport.authenticate('jwt', {session: false})
         away_team: req.body.away_team,
         id_away_team: req.body.id_away_team,
         home_regional: req.user.regional,
-        away_regional: req.body.away_regional
+        away_regional: req.body.away_regional,
+        away_email: req.body.away_email
     });
 
     Sparing.addPenawaranSparing(Offer, (err, offer) => {

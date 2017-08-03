@@ -27,7 +27,8 @@ const app = express();
 const users = require('./routes/users');
 const sparingBoard = require('./routes/sparing-boards');
 const dashboard = require('./routes/sparing-offers');
-const schedule = require('./routes/sparing-schedules')
+const schedule = require('./routes/sparing-schedules');
+const mailer = require('./routes/mailer');
 
 // MW untuk CORS
 app.use(cors());
@@ -48,7 +49,8 @@ require('./config/passport')(passport);
 app.use('/users', users);
 app.use('/sparing-board', sparingBoard);
 app.use('/dashboard/', dashboard);
-app.use('/schedule', schedule)
+app.use('/schedule', schedule);
+app.use('/api/mailer/', mailer);
 
 app.get('/regional', (req, res, next) => {
     res.json(regional);

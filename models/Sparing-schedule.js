@@ -10,13 +10,18 @@ const SparScheduleSchema = mongoose.Schema({
         nama_tempat: {type: String, required: true},
         alamat: {type: String, required: true}
     },
+    away_email: {
+        type: String,
+        required: true
+    },
     tanggal_penjadwalan: {
         type: Date,
         default: Date.now
     },
     status: {type: String, required: true, default:'Diajukan'},
     rescheduled: {type: Boolean, required: true, default: false},
-    nego_count: {type: Number, required: true, default: 0}
+    nego_count: {type: Number, required: true, default: 0},
+    team_respond: {type: Boolean, required: true, default: false}
 })
 
 const SparSchedule = module.exports = mongoose.model('Sparing_schedule', SparScheduleSchema);

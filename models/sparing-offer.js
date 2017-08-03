@@ -25,6 +25,9 @@ const SparingSchema = mongoose.Schema({
     },
     away_regional: {
         type: String
+    },
+    away_email: {
+        type: String
     }
 });
 

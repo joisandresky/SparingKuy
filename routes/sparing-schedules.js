@@ -29,13 +29,14 @@ router.post('/new-sparring-schedule', passport.authenticate('jwt', {session: fal
             nama_tempat: req.body.lokasi_pertandingan.nama_tempat,
             alamat: req.body.lokasi_pertandingan.alamat
         },
+        away_email: req.body.away_email
     })
 
     Scheduling.aturJadwal(newJadwal, (err, result) => {
         if(err){
-            res.json({success: false, msg:'Gagal Menjadwalkan Sparring!', err: err});
+            res.json({success: false, msg:'Gagal Menjadwalkan Sparring!', err: err, email: newJadwal.away_email});
         } else {
-            res.json({success: true, msg:'Berhasil Menjadwalkan Sparring!'});
+            res.json({success: true, msg:'Berhasil Menjadwalkan Sparring!', email: newJadwal.away_email});
         }
     });
 })
@@ -106,7 +107,8 @@ router.put('/penawaran-jadwal/:id', passport.authenticate('jwt', {session: false
     }
     Scheduling.rescheduleJadwal(req.params.id, newJadwal, (err, result) => {
         if(err){
-            res.json({success:result.success, msg:result.msg});
+            res.json({success:false, msg:"an Error Occured" , err: err});
+            console.log(err);
         } else {
             res.json({success: true, msg:'Berhasil Merespon Jadwal!'});
         }
