@@ -1,5 +1,7 @@
 # SparingKuy
 Repository SparingKuy: Portal Mencari Lawan Sparing Futsal
+Requirement :
+- Node.js Version 6.9 keatas.
 
 Pertama install Dulu Dependecies :
 ```
